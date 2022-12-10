@@ -13,10 +13,10 @@ function isPositive(a) {
 
 
 
-  const n = [1,2,3,4,5,6];
+  const n = 3;
 
   for (let i = 0; i < n; i++) {
-      const a = 3;
+      const a = [1,2,3,4};
 
       try {
           console.log(isPositive(a));
