@@ -1,35 +1,4 @@
-'use strict';
 
-process.stdin.resume();
-process.stdin.setEncoding('utf-8');
-
-let inputString = '';
-let currentLine = 0;
-
-process.stdin.on('data', inputStdin => {
-    inputString += inputStdin;
-});
-
-process.stdin.on('end', _ => {
-    inputString = inputString.trim().split('\n').map(string => {
-        return string.trim();
-    });
-    
-    main();    
-});
-
-function readLine() {
-    return inputString[currentLine++];
-}
-//length = 3 & width = 4.5
-/**
-*   Calculate the area of a rectangle.
-*
-*   length: The length of the rectangle.
-*   width: The width of the rectangle.
-*   
-*	Return a number denoting the rectangle's area.
-**/
 function getArea(length, width) {
     let area;
     // Write your code here
@@ -52,3 +21,8 @@ function getPerimeter(length, width) {
     return perimeter;
 }
 
+const length = 3;
+const width = 4.5;
+
+console.log(getArea(length, width));
+console.log(getPerimeter(length, width));
