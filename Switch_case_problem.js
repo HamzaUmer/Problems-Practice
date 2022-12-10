@@ -34,8 +34,8 @@ function getLetter(s) {
 }
 
 
-function main() {
-    const s = readLine();
-    
-    console.log(getLetter(s));
-}
+
+const s = "adgft";
+
+console.log(getLetter(s));
+
