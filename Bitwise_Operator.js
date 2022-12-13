@@ -12,12 +12,7 @@ function getMaxLessThanK(n, k) {
     return max;
 }
 
-
-
-    const q = 3;
-    
-    for (let i = 0; i < q; i++) {
-        const [n,k] = readline().split(' ').map(Number)
+const n = 5;
+const k =2;
         
-        console.log(getMaxLessThanK(n, k));
-}
+console.log(getMaxLessThanK(n, k));
