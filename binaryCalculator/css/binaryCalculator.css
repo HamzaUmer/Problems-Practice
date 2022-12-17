@@ -1,33 +1,46 @@
 body {
-    width: 33%;
-  }
-  
-  #res {
-    background-color: lightgray;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color:black;
+    color: white;
+    margin-top: 200px;
+}
+
+#res {
+    background-color: silver;
     border: solid;
+     
     height: 48px;
     font-size: 20px;
-  }
-  
-  .btn {
+}
+
+#btns button {
     width: 25%;
     height: 36px;
     font-size: 18px;
-    margin:0;
+    margin: 0;
     float: left;
-  }
-  
-  .digits {
-    background-color: lightgreen;
+}
+
+#btn0,
+#btn1 {
+    background-color: #f2aa4cff;
     color: brown;
-  }
-  
-  .controlRes {
-    background-color: darkgreen;
+}
+
+#btnClr,
+#btnEql {
+
+    background-color: #616247ff;
     color: white;
-  }
-  
-  .operands {
-    background-color: black;
-    color: red;
-  }
+}
+
+#btnSum,
+#btnSub,
+#btnMul,
+#btnDiv {
+    background-color: #e94b3cff;
+    color: white;
+}
