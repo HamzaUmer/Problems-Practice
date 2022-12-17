@@ -1,162 +1,71 @@
-const Calculator = class Calculator {
-    init() {
-        this.firstNumber = "";
-        this.firstSet = false;
-        this.secondNumber = "";
-        this.secondSet = false;
-        this.operand = "";
-        this.opSet = false;
-        this.inputArray = [];
-        this.result = "";
+let elem = document.getElementById("res");
+function checkOperator() {
+    if (elem.innerHTML.endsWith('+') || elem.innerHTML.endsWith('-') || elem.innerHTML.endsWith('*') || elem.innerHTML.endsWith('/')) {
+        return true;
     }
-
-    setFirstNumber(number){
-        this.firstNumber += number;
-    }
-
-    setSecondNumber(number){
-        this.secondNumber += number;
-    }
-
-    setOperand(oper){
-        this.operand = oper;
-        // this.firstSet = true;
-    }
-
-    setFirstTrue() {
-        this.firstSet = true;
-    }
-
-    setSecondTrue(){
-        this.secondSet = true;
-    }
-
-    setOpTrue() {
-        this.opSet = true;
-    }
-
-    handleButtonPress(e){
-        const input = e.target.innerHTML;
-        if(e.target.className.indexOf("btn") != -1){
-            if(this.result !== ""){
-                this.init();
-            } 
-            if(input != "C" && input != "="){
-                if(input === "0" || input === "1"){
-                    this.handleDigit(input);
-                } else {
-                    this.handleOperand(input);
-                }
-                this.show();
-            } else if(input === "="){
-                this.handleEquals();
-            } else {
-                this.handleClear();
-            }
-        }
-    }
-
-    handleDigit(number){
-        if(!this.firstSet){
-            this.setFirstNumber(number);
-        } else {
-            if(this.opSet && this.secondNumber === ""){
-                this.inputArray.push(this.operand);
-            }
-            this.setSecondNumber(number);
-        }
-    }
-
-    handleOperand(op){
-        if(this.opSet){
-            console.log("can't do that yet!");
-        } else {
-            this.setOpTrue();
-            if(!this.firstSet){
-                this.setFirstTrue();
-                this.inputArray.push(this.firstNumber);
-            }
-            this.setOperand(op);
-        }
-    }
-
-    handleEquals() {
-        if(!this.secondSet){
-            if(!this.opSet || !this.firstSet){
-                this.show(this.firstNumber);
-            } else {
-                this.setSecondTrue();
-                this.inputArray.push(this.secondNumber);
-            }
-        }
-        const result = this.calculate(this.inputArray);
-        this.result = result;
-        this.show(result);
-    }
-
-    handleClear() {
-        let screen = document.getElementById("res");
-        screen.innerHTML = "";
-        this.init();
-    }
-
-    show(result) {
-        let screen = document.getElementById("res");
-        if(!this.result){
-            screen.innerHTML = `${this.firstNumber}${this.operand}${this.secondNumber}`;
-        } else {
-            screen.innerHTML = result;
-            this.init();
-            this.handleDigit(result);
-        }
-        
-        
-    }
-
-    calculate(arr){
-        console.log(arr);
-        const a = parseInt(arr[0],2);
-        const b = parseInt(arr[2],2);
-        
-        switch(arr[1]){
-            case "+":
-                return this.add(a, b);
-                break;
-            case "-":
-                return this.subtract(a, b);
-                break;
-            case "/":
-                return this.divide(a, b);
-                break;
-            case "*":
-                return this.multiply(a, b);
-                break;
-        }
-    }
-
-    add(a,b){
-        let res = a + b;
-        return res.toString(2);
-    }
-
-    subtract(a,b){
-        let res = a - b;
-        return res.toString(2);
-    }
-
-    divide(a,b){
-        let res =  a / b;
-        return res.toString(2);
-    }
-
-    multiply(a,b){
-        let res =  a * b;
-        return res.toString(2);
-    }
-
 }
-
-let calc = new Calculator();
-document.body.onclick = e => {
-    calc.handleButtonPress(e);
+function clickZero() {
+    elem.innerHTML += '0';
+}
+function clickOne() {
+    elem.innerHTML += '1';
+}
+function clickSum() {
+    if (elem.innerHTML.length != 0 && !checkOperator()) {
+        elem.innerHTML += '+';
+    }
+}
+function clickSub() {
+    if (elem.innerHTML.length != 0 && !checkOperator()) {
+        elem.innerHTML += '-';
+    }
+}
+function clickMul() {
+    if (elem.innerHTML.length != 0 && !checkOperator()) {
+        elem.innerHTML += "*";
+    }
+}
+function clickDiv() {
+    if (elem.innerHTML.length != 0 && !checkOperator()) {
+        elem.innerHTML += "/";
+    }
+}
+function clickClr() {
+    elem.innerHTML = " ";
+}
+function clickEql() {
+    if (!checkOperator()) {
+        let re = /\d+/g
+        let re2 = /[\+\-\*V]+/g
+        let numbers = elem.innerHTML.match(re);
+        let operations = elem.innerHTML.match(re2);
+        while (operations.length > 0) {
+            if (operations.includes('*')) {
+                let indexOfMul = operations.indexOf('*');
+                let mul = (indexOfMul != 0 ? parseInt(numbers[indexOfMul - 1], 2) : parseInt(numbers[indexOfMul], 2)) * parseInt(numbers[indexOfMul + 1], 2);
+                numbers.splice(indexOfMul, 2);
+                numbers.splice(indexOfMul, 0, mul.toString(2)); operations.splice(indexOfMul, 1);
+            } else if (operations.includes('/')) {
+                let indexOfDiv = operations.indexOf('/');
+                let division = (indexOfDiv != 0 ? parseInt(numbers[indexOfDiv - 1], 2) : parseInt(numbers[indexOfDiv], 2)) / parseInt(numbers[indexOfDiv + 1], 2);
+                numbers.splice(indexOfDiv, 2); numbers.splice(indexOfDiv, 0, division.toString(2));
+                operations.splice(indexOfDiv, 1);
+            } else if (operations.includes('+')) {
+                let indexOfSum = operations.indexOf('+');
+                let sum = (indexOfSum != 0 ? parseInt(numbers[indexOfSum - 1], 2) : parseInt(numbers[indexOfSum], 2)) + parseInt(numbers[indexOfSum + 1], 2);
+                numbers.splice(indexOfSum, 2);
+                numbers.splice(indexOfSum, 0, sum.toString(2));
+                operations.splice(indexOfSum, 1);
+            } else {
+                let indexOfSub = operations.indexOf('-');
+                let sub = (indexOfSub != 0 ? parseInt(numbers[indexOfSub - 1], 2) : parseInt(numbers[indexOfSub], 2)) - parseInt(numbers[indexOfSub + 1], 2);
+                numbers.splice(indexOfSub, 2);
+                numbers.splice(indexOfSub, 0, sub.toString(2));
+                operations.splice(indexOfSub, 1);
+            }
+        }
+        elem.innerHTML = numbers[0].toString(2);
+    } else {
+        alert("Line must ends with number.")
+    }
 }
