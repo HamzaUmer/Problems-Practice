@@ -1,0 +1,38 @@
+Length of String is 7 "abcabcbb"
+
+Firstly when loop start value of start, end & maxLength:
+start = 0
+end = 0
+maxLength = 0
+
+Then, Set will store "abc" from "abcabcbb" now value would be :
+start = 0 
+end = 2 (because "a" on "0" index, "b" on "1" index and "c" on "2" index, so value of end is 2)
+maxLength = 3;
+
+Now, "a" repeated from "abcabcbb", so "a" from start would be delete and new string would be "bcabcbb":
+start = 1
+end = 3
+maxLength = 3
+
+Now again one more alphabet repeat which is "b" so this alphabet deleted from start again so "cabcbb":
+start = 2
+end = 4
+maxLength = 3
+
+Now again one more alphabet repeat which is "c" so this alphabet deleted from start again so "abcbb":
+start = 3
+end = 5
+maxLength = 3
+
+Now again "b" repeated so it would deleted again, so "abcb":
+start = 4
+end = 6
+maxLength = 3
+
+Finally one more repeated alphabet which is "b" so it would delete again and final window is "abc" which would store in set:
+start = 5
+end = 7
+maxLength = 3
+
+So, Output would be "3"..
