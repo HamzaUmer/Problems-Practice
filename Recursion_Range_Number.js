@@ -11,7 +11,7 @@ function rangeOfNumbers(startNum, endNum) {
      return [];
   }else {
     const array = rangeOfNumbers(startNum, endNum-1);
-    array.unshift(endNum);
+    array.push(endNum);
     return array;
   }
 };
