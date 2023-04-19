@@ -1,5 +1,5 @@
 """
-Polymorphism:
+Polymorphism(Different Behaviors at different instances):
 Polymorphism is the ability of an object to take on many forms. 
 In Python, polymorphism can be achieved using method overloading and method overriding.
 """
