@@ -1,5 +1,5 @@
 """
-Abstraction:
+Abstraction(Hiding Our irrelevant data):
 Abstraction is the process of representing only essential features of an object while hiding the unnecessary details.
 In Python, abstraction can be achieved using abstract classes and interfaces.
 """
