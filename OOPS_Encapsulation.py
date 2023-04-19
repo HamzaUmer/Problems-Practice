@@ -1,5 +1,5 @@
 """
-Encapsulation:
+Encapsulation(Protecting Our Data):
 Encapsulation refers to the process of hiding implementation details and only exposing necessary information to the user. 
 In Python, encapsulation can be achieved by using private variables and methods.
 """
